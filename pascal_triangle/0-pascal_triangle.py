@@ -1,4 +1,4 @@
-#!/usr/bin/env
+#!/usr/bin/env python3
 
 def pascal_triangle(n):
     """return a list of lists of integers representing the Pascal's triangle"""
