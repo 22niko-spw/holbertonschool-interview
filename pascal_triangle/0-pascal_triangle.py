@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """Module that returns a list of lists of integers
 representing Pascal's triangle"""
 
