@@ -20,8 +20,6 @@ def main():
     try:
         for line in sys.stdin:
             parts = line.split()
-            # Format attendu : IP - [date] "GET /projects/260 HTTP/1.1" code size
-            # Minimum 7 parties, taille en dernier, code en avant-dernier
             if len(parts) < 7:
                 continue
 
@@ -42,6 +40,8 @@ def main():
     except KeyboardInterrupt:
         print_stats(total_size, status_counts)
         raise
+
+    print_stats(total_size, status_counts)
 
 
 if __name__ == "__main__":
