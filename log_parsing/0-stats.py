@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Log parsing script that reads stdin and computes metrics."""
 import sys
+import re
 
 
 def print_stats(total_size, status_counts):
@@ -16,13 +17,17 @@ def main():
     line_count = 0
     valid_codes = {200, 301, 400, 401, 403, 404, 405, 500}
     status_counts = {code: 0 for code in valid_codes}
+    pattern = re.compile(
+        r'^\d+\.\d+\.\d+\.\d+ - \[.+\] "GET /projects/260 HTTP/1\.1" \d+ \d+$'
+    )
 
     try:
         for line in sys.stdin:
-            parts = line.split()
-            if len(parts) < 7:
+            line = line.rstrip('\n')
+            if not pattern.match(line):
                 continue
 
+            parts = line.split()
             try:
                 file_size = int(parts[-1])
                 status_code = int(parts[-2])
